@@ -1,0 +1,63 @@
+.container{
+    height: 77.5vh;
+    overflow-y: auto;
+    position: relative;
+    margin-top: 8.4vh;
+    padding: 1% 5%;
+}
+
+.inner-container{
+  height: 100%;
+    row-gap: 5%;
+    position: relative;
+    flex-direction: column;
+    justify-content: end;
+
+}
+
+.footer{
+  background-color: white;
+  height: 15vh;
+  justify-content: center;
+  width: 75vw;
+  padding: 0 5%;
+}
+.form{
+width: 100%;
+}
+.mat-form-field{
+width: 100%;
+
+}
+
+::ng-deep .mat-form-field-suffix{
+  top:0 !important;
+}
+
+.chat-container{
+
+  align-items: flex-start;
+}
+
+.chat-desc{
+  row-gap: 0;
+}
+
+.mat-divider {
+  width: 33%;
+}
+
+.divider-container{
+  justify-content: center;
+}
+
+.divider-text-container {
+  display: flex;
+  justify-content: center;
+
+}
+
+.divider-text {
+  text-align: center;
+  width: 100%;
+}

@@ -1,0 +1,51 @@
+.sidenav-container {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+}
+.content-header{
+  position: fixed;
+}
+.sidenav{
+  width: 25vw;
+}
+
+.sidenav-elements{
+  width: 100%;
+  padding: 5%;
+}
+.form{
+  width: 100%;
+}
+.mat-form-field{
+  width: 100%;
+}
+
+p{
+  margin: 0;
+}
+
+.footer{
+  background-color: white;
+  padding: 1%;
+}
+
+::ng-deep .mat-drawer{
+  left: 0;
+}
+
+::ng-deep .mat-drawer-content{
+  overflow-y: hidden !important;
+}
+
+.content{
+  padding: 5%;
+}
+.head-content{
+  margin-bottom: 5%;
+}
+
+
+

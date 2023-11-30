@@ -1,0 +1,40 @@
+
+<div id="container" class="container">
+  <div #target id="inner-container" class="flex-col inner-container" >
+
+  <!-- <div class="flex-row divider-container" style="width:100%">
+  <mat-divider *ngIf="!(isMobileScreen && isTabScreen)"></mat-divider>
+<div class="divider-text-container">
+  <span class="divider-text" >Some text in between the divider</span>
+</div>
+<mat-divider *ngIf="!(isMobileScreen && isTabScreen)"></mat-divider>
+</div> -->
+
+
+  <div class="chat-container flex-row" *ngFor="let msg of msgInit|async">
+    <!-- <ng-template *ngIf="msg!==''"> -->
+    <p-avatar label="P" size="xlarge"></p-avatar>
+    <div class="flex-col chat-desc">
+    <span class="flex-row">
+    <p>{{msg.SendByUserEmail.split('@')[0]}}</p>
+    <!-- <p>May 22, 2022</p> -->
+    </span>
+    <p >{{msg}}</p>
+
+  </div>
+<!-- </ng-template> -->
+  </div>
+</div>
+</div>
+<div class="footer content-footer flex-row" [style.width.vw]="isMobileScreen? '100': '75'">
+  <form class="flex-row form" [formGroup]="input" (submit)="sendMsg($event)">
+    <mat-form-field appearance="outline" class="mat-form-field">
+
+      <input matInput placeholder="Type a message here" formControlName="msg">
+      <button matSuffix mat-mini-fab color="primary" aria-label="Example icon button with a home icon" (submit)="sendMsg($event)">
+        <mat-icon>send</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+</div>
+

@@ -1,0 +1,118 @@
+<mat-sidenav-container class="sidenav-container" [hasBackdrop]="isMobileScreen ? true : false">
+  <mat-sidenav [mode]="isMobileScreen ? 'over' : 'side'" #chatList [opened]="!isMobileScreen" fixedInViewport
+    class="sidenav sidenav-start" [style.width.vw]="isMobileScreen ? '90' : isTabScreen ? '33' : '25'">
+    <div>
+      <mat-toolbar class="flex-row-gap">
+        <mat-icon *ngIf="isMobileScreen" (click)="chatList.close()">menu</mat-icon>
+        <span>Channels </span>
+        <mat-icon>add</mat-icon>
+      </mat-toolbar>
+      <div class="sidenav-elements">
+        <form class="form">
+          <mat-form-field appearance="outline" class="mat-form-field">
+            <mat-icon matPrefix>search</mat-icon>
+            <mat-label>Search</mat-label>
+            <input matInput placeholder="Search" />
+          </mat-form-field>
+        </form>
+        <!-- <p>Find All Channels</p> -->
+        <div class="channels flex-col" *ngFor="let channel of channels | async">
+          <div (click)="channelSelected(channel.channelId); drawer1.toggle()" class="flex-row">
+            <p-avatar [image]="
+                channel.channel_image_url
+                  ? channel.channel_image_url
+                  : default_url
+              " size="large"></p-avatar>
+            <p>{{ channel.channel_name }}</p>
+          </div>
+
+          <mat-drawer id="slide1" #drawer1 class="flex-row" mode="side" [style.width.vw]="isMobileScreen ? '90' : isTabScreen ? '33' : '25'">
+            <mat-toolbar class="flex-row">
+              <mat-icon (click)="drawer1.toggle()">keyboard_arrow_left</mat-icon>
+              <span>All Channels </span>
+            </mat-toolbar>
+            <div class="content">
+              <div class="head-content">
+                <h1>{{ channel.channel_name }}</h1>
+                <p>
+                  {{ channelDetails.description }}
+                </p>
+              </div>
+              <h2>Members</h2>
+              <div class="flex-col" *ngFor="let user of channelDetails.users">
+                <div class="flex-row">
+                  <p-avatar [label]="user.user_email[0]" size="large"></p-avatar>
+                  <p>{{ user.user_email }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="flex-row-gap side-footer footer" [style.width.vw]="
+                isMobileScreen ? '90' : isTabScreen ? '33' : '25'
+              ">
+              <span class="flex-row">
+                <p-avatar [label]="user_email[1]" styleClass="mr-2" size="large"></p-avatar>
+                <p>{{ user_email.substr(1, user_email.length-1) }}</p>
+              </span>
+              <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>account_circle</mat-icon>
+                  <span>My Profile</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>settings_system_daydream</mat-icon>
+                  <span>Tweeter</span>
+                </button>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)="logout()">
+                  <mat-icon>arrow_right_alt</mat-icon>
+                  <span>Logout</span>
+                </button>
+              </mat-menu>
+            </div>
+          </mat-drawer>
+        </div>
+      </div>
+
+      <div class="flex-row-gap side-footer footer" [style.width.vw]="isMobileScreen ? '90' : isTabScreen ? '33' : '25'">
+        <span class="flex-row">
+          <p-avatar [label]="user_email[1].toUpperCase()" styleClass="mr-2" size="large"></p-avatar>
+          <p>{{ user_email.substr(1, user_email.length-1) }}</p>
+        </span>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>account_circle</mat-icon>
+            <span>My Profile</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>settings_system_daydream</mat-icon>
+            <span>Tweeter</span>
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>arrow_right_alt</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="content-header flex-row-gap">
+      <span class="flex-row">
+        <mat-icon *ngIf="isMobileScreen" (click)="chatList.toggle()">menu</mat-icon>
+        <p>{{channelDetails.name}}</p>
+      </span>
+    </mat-toolbar>
+
+
+      <router-outlet name="channelOutlet"><app-chat-room [channelId]="channelId"></app-chat-room></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

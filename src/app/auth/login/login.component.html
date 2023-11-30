@@ -1,0 +1,23 @@
+
+<div class="background">
+<div class="container">
+  <h1 class="mat-title">Login</h1>
+  <form class="form" [formGroup]="user_cred">
+      <mat-form-field appearance="outline" class="mat-form-field">
+          <mat-label class="mat-label">Enter your email</mat-label>
+          <mat-icon class="mat-icon" matPrefix>mail</mat-icon>
+          <input class="input" matInput placeholder="email" formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+          <mat-label class="mat-label">Enter your password</mat-label>
+          <mat-icon class="mat-icon" matPrefix>lock</mat-icon>
+          <input class="input" matInput placeholder="password" formControlName="password">
+          <mat-icon class="mat-icon" matSuffix>remove_red_eye</mat-icon>
+      </mat-form-field>
+      <button class="submit-button" mat-raised-button color="primary" (click)="onSubmit($event)">Submit</button>
+  </form>
+  <br>
+  <div class="container-footer"> <p>Don't have an account? <a routerLink="/auth/register">Register</a> </p></div>
+
+</div>
+</div>
